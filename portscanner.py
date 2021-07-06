@@ -12,7 +12,7 @@ class PortScan:
         self.port_num = port_num
 
     def scan(self):
-        for port in range(1, 500):
+        for port in range(1, self.port_num):
             self.scan_port(port)
 
     def check_ip(self):
@@ -32,9 +32,10 @@ class PortScan:
             try:
                 banner = sock.recv(1024).decode().strip('\n').strip('\r')
                 self.banners.append(banner)
+                print(f"{converted_ip}:{port}:{banner}")
             except:
                 self.banners.append(' ')
-                pass
+                print(f"{converted_ip}:{port}")
             sock.close()
         except:
             pass
